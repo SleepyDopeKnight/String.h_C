@@ -1,4 +1,4 @@
-#  String.h
+#  String_functions
 
 Реализация функицй библиотеки string.h.
 

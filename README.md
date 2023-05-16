@@ -1,4 +1,4 @@
-# String.h
+# String_functions
 
 Implementation functions of the string.h.
 

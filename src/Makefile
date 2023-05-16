@@ -1,5 +1,6 @@
 .PHONY: all check clean rebuild
 CC = gcc -std=c11
+LINUX= -lsubunit -lpthread
 FLAGS = -Wall -Wextra -Werror
 OS = $(shell uname -s)
 
@@ -11,11 +12,19 @@ s21_string.a:
 	ranlib s21_string.a
 
 test: s21_string.a
+ifeq ($(OS), Darwin)
 	$(CC) $(FLAGS) -lcheck s21_tests.c s21_string.a -o s21_tests
+else
+	$(CC) $(FLAGS) $(LINUX) -lcheck s21_tests.c s21_string.a -o s21_tests
+endif
 	./s21_tests
 
 gcov_report: s21_string.a
+ifeq ($(OS), Darwin)
 	$(CC) $(FLAGS) --coverage -lcheck s21_tests.c s21_string.c -o gcov_report
+else
+	$(CC) $(FLAGS) $(LINUX) --coverage -lcheck s21_tests.c s21_string.c -o gcov_report
+endif
 	./gcov_report
 	lcov -t "./gcov_report" -o gcov_report.info -c -d .
 	genhtml -o report gcov_report.info

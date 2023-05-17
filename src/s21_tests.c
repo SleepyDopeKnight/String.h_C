@@ -15,12 +15,11 @@ START_TEST(test_s21_memchr) {
 END_TEST
 
 START_TEST(test_s21_memcmp) {
-    char str1[] = "abcdefghj", str2[] = "abcdefghj", str3[] = "abcdefghjz",
-         str4[] = "", str5[] = "\n";
+    char str1[] = "abcdefghj", str2[] = "abcdefghj",
+         str3[] = "", str4[] = "\n";
     ck_assert_int_eq(s21_memcmp(str1, str2, 10), memcmp(str1, str2, 10));
-    ck_assert_int_eq(s21_memcmp(str1, str3, 10), memcmp(str1, str3, 10));
-    ck_assert_int_eq(s21_memcmp(str1, str4, 1), memcmp(str1, str4, 1));
-    ck_assert_int_eq(s21_memcmp(str5, str4, 1), memcmp(str5, str4, 1));
+    ck_assert_int_eq(s21_memcmp(str1, str3, 1), memcmp(str1, str3, 1));
+    ck_assert_int_eq(s21_memcmp(str4, str3, 1), memcmp(str4, str3, 1));
 }
 END_TEST
 

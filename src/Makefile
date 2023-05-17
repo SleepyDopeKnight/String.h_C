@@ -1,7 +1,7 @@
 .PHONY: all check clean rebuild
-CC = gcc -std=c11
-LINUX= -lsubunit -lpthread
-FLAGS = -Wall -Wextra -Werror
+CC = gcc
+LINUX = -lsubunit -lpthread -lm -lrt
+FLAGS = -Wall -Wextra -Werror -std=c11 -g
 OS = $(shell uname -s)
 
 all: test check gcov_report
@@ -15,7 +15,7 @@ test: s21_string.a
 ifeq ($(OS), Darwin)
 	$(CC) $(FLAGS) -lcheck s21_tests.c s21_string.a -o s21_tests
 else
-	$(CC) $(FLAGS) $(LINUX) -lcheck s21_tests.c s21_string.a -o s21_tests
+	$(CC) $(FLAGS) s21_tests.c s21_string.a -lcheck $(LINUX) -o s21_tests
 endif
 	./s21_tests
 

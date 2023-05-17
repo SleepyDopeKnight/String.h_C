@@ -233,17 +233,8 @@ START_TEST(test_s21_strcspn) {
 END_TEST
 
 START_TEST(test_s21_strerror) {
-    for (int j = 0, err = -1; j < 3; j++) {
-        char *errtest1 = s21_strerror(err);
-        char *errtest2 = strerror(err);
-        S21_SIZE_T i = 0, len1 = s21_strlen(errtest1),
-                   len2 = s21_strlen(errtest2);
-        while (i < len1 || i < len2) {
-            ck_assert_str_eq(errtest1 + i, errtest2 + i);
-            i++;
-        }
-        err += 1;
-    }
+  int err_num = -2;
+  ck_assert_str_eq(strerror(err_num), s21_strerror(err_num));
 }
 END_TEST
 

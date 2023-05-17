@@ -23,7 +23,7 @@ gcov_report:
 ifeq ($(OS), Darwin)
 	$(CC) $(FLAGS) --coverage -lcheck s21_tests.c s21_string.c -o gcov_report
 else
-	$(CC) $(FLAGS) $(LINUX) --coverage -lcheck s21_tests.c s21_string.c -o gcov_report
+	$(CC) $(FLAGS) --coverage s21_tests.c s21_string.c -lcheck $(LINUX) -o gcov_report
 endif
 	./gcov_report
 	lcov -t "./gcov_report" -o gcov_report.info -c -d .

@@ -19,7 +19,7 @@ else
 endif
 	./s21_tests
 
-gcov_report: s21_string.a
+gcov_report:
 ifeq ($(OS), Darwin)
 	$(CC) $(FLAGS) --coverage -lcheck s21_tests.c s21_string.c -o gcov_report
 else
@@ -53,5 +53,6 @@ clean:
 	rm -rf gcov_report
 	rm -rf report
 	rm -rf s21_tests
+	rm -rf *dSYM
 
 rebuild: clean all

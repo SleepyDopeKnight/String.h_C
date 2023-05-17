@@ -154,7 +154,11 @@ S21_SIZE_T s21_strcspn(const char *str1, const char *str2) {
 
 char *s21_strerror(int nmb) {
     static char unknown[27];
+    #ifdef unix
+    sprintf(unknown, "Unknown error %d", nmb);
+    #else
     sprintf(unknown, "Unknown error: %d", nmb);
+    #endif
     #define ERRSTR(v, s) do {    \
         if (nmb == (v))          \
             return (s);          \

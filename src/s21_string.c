@@ -156,7 +156,8 @@ char *s21_strerror(int nmb) {
     static char unknown[27];
     #ifdef __APPLE__ 
     sprintf(unknown, "Unknown error: %d", nmb);
-    #else
+    #endif
+    #ifdef __linux__ 
     sprintf(unknown, "Unknown error %d", nmb);
     #endif
     #define ERRSTR(v, s) do {    \
